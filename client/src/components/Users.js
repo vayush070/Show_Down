@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Users = (props) => {
   const [allUsers, setallUsers] = useState([]);
-  const getusers = async () => {
-    try {
-      const res = await axios.get("/api/getuser");
-      if (res.status === 200) {
-        console.log("loaded successfully");
-        setallUsers(res.data);
+  useEffect(() => {
+    const getusers = async () => {
+      try {
+        const res = await axios.get("/api/getuser");
+        if (res.status === 200) {
+          console.log("loaded successfully");
+          setallUsers(res.data);
+        }
+      } catch (error) {
+        console.log("fman");
+        console.log(error.response.data.error);
       }
-    } catch (error) {
-      console.log(error.response.data.error);
-    }
-  };
+    };
+    getusers();
+  }, []);
 
   return (
     <div>
       <button onClick={() => props.onAdd()}>Go back</button>
-      <button onClick={getusers}>Get All Users</button>
       <div>
         <table border="2">
           <thead>
