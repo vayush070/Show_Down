@@ -40,6 +40,7 @@ const AddUser = (props) => {
       }
     } catch (error) {
       setpopup(error.response.data.error);
+      setFormValues([{ fullname: "", email: "", username: "" }]);
       console.log(error.response.data.error);
     }
   };
