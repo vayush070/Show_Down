@@ -9,11 +9,12 @@ const Users = (props) => {
         const res = await axios.get("/api/getuser");
         if (res.status === 200) {
           console.log("loaded successfully");
+          // console.log(res);
           setallUsers(res.data);
         }
       } catch (error) {
-        console.log("fman");
-        console.log(error.response.data.error);
+        console.log("error here");
+        // console.log("fman");
       }
     };
     getusers();

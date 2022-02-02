@@ -4,13 +4,13 @@ const User = require("../models/User");
 const config = require("config");
 
 //add users route
-router.post("/", async (req, res) => {
+router.post("/", (req, res) => {
   // console.log(req.body);
   const data = req.body;
   data.map(async (body, i) => {
     const { email, fullname, username } = body;
 
-    //email validation here :)
+    // email validation here :)
     const validateEmail = (emailcheck) => {
       return String(emailcheck)
         .toLowerCase()
@@ -20,18 +20,15 @@ router.post("/", async (req, res) => {
     };
     if (!validateEmail(email)) {
       // console.log("h1");
-      return res.status(400).send({ error: "not a valid email" });
+      return res.status(400).json({ error: "not a valid email" });
     }
     //
 
     //username length checking here :)
     if (username.length < 4) {
       // console.log("h2");
-      return res
-        .status(400)
-        .json({ error: "username required with minimum 4 alphabets" });
+      return res.status(400).json({ error: "username minimum 4 alphabets" });
     }
-    //
 
     try {
       let user = await User.findOne({ email });
@@ -39,7 +36,7 @@ router.post("/", async (req, res) => {
         // console.log("h3");
         return res
           .status(400)
-          .send({ error: ` User ${i + 1} Already exists ` });
+          .json({ error: ` User ${i + 1} Already exists ` });
       }
       user = new User({
         email,
@@ -48,13 +45,15 @@ router.post("/", async (req, res) => {
       });
 
       await user.save();
-      res.status(200).send({ msg: `User ${i + 1} Added` });
+      // res.status(200).json({ msg: `User ${i + 1} Added` });
     } catch (error) {
       // console.log("here");
       // console.error({ error: error });
-      res.status(500).send({ error: error.message });
+      throw error;
     }
   });
+
+  res.status(200).send("done");
 });
 
 module.exports = router;
