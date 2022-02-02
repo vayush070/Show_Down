@@ -4,8 +4,15 @@ import axios from "axios";
 const Users = (props) => {
   const [allUsers, setallUsers] = useState([]);
   const getusers = async () => {
-    const res = await axios.get("/api/getuser");
-    setallUsers(res.data);
+    try {
+      const res = await axios.get("/api/getuser");
+      if (res.status === 200) {
+        console.log("loaded successfully");
+        setallUsers(res.data);
+      }
+    } catch (error) {
+      console.log(error.response.data.error);
+    }
   };
 
   return (
