@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 const Users = (props) => {
   const [allUsers, setallUsers] = useState([]);
-
-  useEffect(() => {
-    const getusers = async () => {
-      const res = await axios.get("/api/getuser");
-      setallUsers(res.data);
-    };
-    getusers();
-  }, []);
+  const getusers = async () => {
+    const res = await axios.get("/api/getuser");
+    setallUsers(res.data);
+  };
 
   return (
     <div>
       <button onClick={() => props.onAdd()}>Go back</button>
-      <button onClick={() => props.onAdd()}></button>
+      <button onClick={getusers}>Get All Users</button>
       <div>
         <table border="2">
           <thead>
