@@ -1,0 +1,74 @@
+.App {
+  text-align: center;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 50px;
+  background-color: rgb(110, 150, 150);
+}
+* {
+  box-sizing: border-box;
+}
+
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 10px;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+button {
+  border-radius: 10px;
+}
+.button-section {
+  margin: 3%;
+}
+.button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: royalblue;
+}
+
+.remove {
+  background-color: rgb(214, 121, 78);
+}
+.remove:hover {
+  background-color: rgb(141, 1, 1);
+}
+
+.popup {
+  color: red;
+}
+table {
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgb(190, 162, 216);
+}
+thead {
+  background-color: rgb(189, 152, 174);
+}
+th {
+  padding: 5px;
+  border-radius: 20px;
+}
+thead tr th {
+  font-size: larger;
+}
