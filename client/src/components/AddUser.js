@@ -34,6 +34,7 @@ const AddUser = (props) => {
       const res = await axios.post("/api/adduser", formValues, config);
       if (res.status === 200) {
         console.log("User Added");
+        setFormValues([{ fullname: "", email: "", username: "" }]);
         setpopup("");
         props.onAdd();
         console.log("here");
