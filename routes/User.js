@@ -30,28 +30,19 @@ router.post("/", (req, res) => {
       return res.status(400).json({ error: "username minimum 4 alphabets" });
     }
 
-    try {
-      let user = await User.findOne({ email });
-      if (user) {
-        // console.log("h3");
+    let user = await User.findOne({ email });
+    if (user) {
+      // console.log("h3");
 
-        return res
-          .status(400)
-          .json({ error: ` User ${i + 1} Already exists ` });
-      }
-      user = new User({
-        email,
-        fullname,
-        username,
-      });
-
-      await user.save();
-      // res.status(200).json({ msg: `User ${i + 1} Added` });
-    } catch (error) {
-      // console.log("here");
-      // console.error({ error: error });
-      throw error;
+      return res.status(400).json({ error: " User Already exists " });
     }
+    user = new User({
+      email,
+      fullname,
+      username,
+    });
+
+    await user.save();
   });
 
   res.status(200).send("done");
